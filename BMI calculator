@@ -1,0 +1,63 @@
+#include <stdio.h>
+// void is used to create function but it does not return any value
+void calculateBMI(float weight, float height, int heightInFeet) {
+    float bmi;
+
+    // Convert height to meters
+    if (heightInFeet) {
+        height = height * 0.3048;
+         // 1 foot = 0.3048 meters
+    } else {
+        height = height / 100.0;
+        // Convert cm to meters
+    }
+
+    // Calculate BMI
+    bmi = weight / (height * height);
+
+    printf("\nYour BMI is: %f\n", bmi); // display your record
+
+    // Provide suggestions based on BMI score
+    if (bmi < 18.5) {
+        printf("You are underweight. Consider a balanced diet and regular exercise.\n");
+    } else if (bmi >= 18.5 && bmi < 24.9) {
+        printf("You have a normal weight. Keep up the healthy lifestyle!\n");
+    } else if (bmi >= 25 && bmi < 29.9) {
+        printf("You are overweight. Consider a balanced diet and regular exercise.\n");
+    } else {
+        printf("You are obese. It's important to consult a healthcare professional.\n");
+    }
+}
+
+int main() {
+    float weight, height;
+    int choice;
+
+    printf("Welcome to the BMI Calculator!\n");
+
+    printf("Choose the unit for height:\n");
+    printf("1. Feet\n");
+    printf("2. Centimeters\n");
+    printf("Enter your choice (1/2): ");
+    scanf("%d", &choice); // choose height unit
+
+    if (choice == 1) {
+        // Input in feet
+        printf("Enter your weight in kilograms: ");
+        scanf("%f", &weight);
+        printf("Enter your height in feet: ");
+        scanf("%f", &height);
+        calculateBMI(weight, height, 1);
+    } else if (choice == 2) {
+        // Input in centimeters
+        printf("Enter your weight in kilograms: ");
+        scanf("%f", &weight);
+        printf("Enter your height in centimeters: ");
+        scanf("%f", &height);
+        calculateBMI(weight, height, 0);
+    } else {
+        printf("Invalid choice. Please run the program again.\n");
+    }
+
+    return 0;
+}
